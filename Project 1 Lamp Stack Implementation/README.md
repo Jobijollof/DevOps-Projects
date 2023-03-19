@@ -21,7 +21,7 @@ LAMP is a collection of four components that make up a fully functional web deve
 
 *Create a Key pair while creating the EC2 instance (Create a .pem key or .ppk to use  ssh or putty to connect to the instance)*
 
-*to connect to the Ec2 instance, using ssh on power shell, run the following command *
+*to connect to the Ec2 instance, using ssh on power shell, run the following command*
 
 `ssh -i "task_one.pem" ubuntu@ec.<Public-IP>.compute-1.amazonaws.com`
 
@@ -37,11 +37,11 @@ LAMP is a collection of four components that make up a fully functional web deve
 
 3. To verify that apache2 is running as a Service in the OS, run following command
 
-`sudo systemctl  status apache2`
+`sudo systemctl status apache2`
 
 ![apache status](./images/apache_status.png)
 
-4.  Verify that there is  access locally to the server in the Ubuntu shell, using the either of the following commands.
+4.  Verify that there is access locally to the server in the Ubuntu shell, using the either of the following commands.
 
 ```
 curl http://localhost:80
@@ -142,23 +142,26 @@ To secure server run the next commands
 
 9. Create an index.html file in that location to test that the virtual host works as expected using the command
 
-`sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html`
+```
+sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
+
+```
 
 - New website is now active, the text from ‘echo’ command you wrote to index.html file, will be visible. This  means  that  Apache virtual host is working as expected.
 The server’s public hostname (DNS name) and public IP address will be in the output. Website can be  accessed in the  browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
 
 
-'http://<Public-IP-Adress>:80'
+'http://Public-IP-Adress:80'
 
 ![Apache2 virtual host successful](./images/virtual-hostapache2.png)
 
 ## Enable PHP on website
 
-1.  Edit  the conf file with the command
+1.  Edit  the configuration file with the command:
 
 `sudo vim /etc/apache2/mods-enabled/dir.conf`
 
-2. Paste in the command
+2. Paste in the command:
 
 ```
     <IfModule mod_dir.c>
