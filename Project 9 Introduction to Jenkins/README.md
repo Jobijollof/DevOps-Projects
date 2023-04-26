@@ -46,6 +46,17 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
 ```    
 `sudo apt update`
 
+I had errors at this point.
+
+![issues with jenkins install 1](https://user-images.githubusercontent.com/113374279/234577127-4627dad8-a206-44fa-99a2-b218837fa83c.png)
+i did a bit of research, and got that this error typically occurs when trying to update or install packages from a repository that has not been authenticated. The error message suggests that the public key needed to authenticate the repository is not available on your system.
+
+To resolve this issue, i ran the following command:
+
+`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA`
+
+![install-jenkins](https://user-images.githubusercontent.com/113374279/234578465-8b0fedb5-64cc-4d90-bced-8778c882ecca.png)
+
 `sudo apt upgrade -y`
 
 `sudo apt-get install jenkins -y`
