@@ -48,28 +48,30 @@ Based on these you will be able to choose the most appropriate storage system fo
 ![EBS](./images/attach-ebs.png)
 
 
-
 ## Step 1 – Prepare NFS Server
+
 
 1. Spin up a new EC2 instance with RHEL Linux 8 Operating System.
 
 2. Configure LVM on the Server.
 
-c. Instead of formatting the disks as ext4, you will have to format them as xfs
+3. Instead of formatting the disks as ext4, you will have to format them as xfs
 
-3. Ensure there are 3 Logical Volumes. ***lv-opt*** ***lv-apps***, and ***lv-logs***
+4. Ensure there are 3 Logical Volumes. ***lv-opt*** ***lv-apps***, and ***lv-logs***
 
-4. Create mount points on /mnt directory for the logical volumes as follow:
+5. Create mount points on /mnt directory for the logical volumes as follow:
 
-5. Mount ***lv-apps*** on ***/mnt/apps*** – To be used by webservers
+6. Mount ***lv-apps*** on ***/mnt/apps*** – To be used by webservers
 
-6. Mount ***lv-logs*** on ***/mnt/logs*** – To be used by webserver logs
+7. Mount ***lv-logs*** on ***/mnt/logs*** – To be used by webserver logs
 
-7. Mount ***lv-opt*** on ***/mnt/opt*** – To be used by Jenkins server in Project 8
+8. Mount ***lv-opt*** on ***/mnt/opt*** – To be used by Jenkins server in Project 8
 
-8. Install NFS server, configure it to start on reboot and make sure it is up and running.
+9. Install NFS server, configure it to start on reboot and make sure it is up and running.
+
 
 ### Configure Logical Volume to the NFS server
+
 
 - To list the block devices on the server run:
 
@@ -96,6 +98,7 @@ After partitioning the three disks Once again, use the ***lsblk*** utility to vi
 Take note of ***Disk*** and ***Part***.  Disks now been partitions.
 
 It is on these partitions we are going to create physical volumes.
+
 In Ubuntu we use ***apt*** command to install packages, in RedHat/CentOS a different package manager is used, called the ***yum*** command.
 
 We are going to install ***lvm2*** package on the server so that it can be used to create a volume group etc
@@ -116,7 +119,9 @@ Logical volume management (LVM) is a form of storage virtualization that offers 
 
 `sudo lvmdiskscan`
 
-![lvd](./images/lvm-scan.png) This shows us that there are four partitions.
+This shows us that there are four partitions.
+
+![lvd](./images/lvm-scan.png) 
 
 The next stage is to create the physical volume using the ***pvcreate*** utility.
 
