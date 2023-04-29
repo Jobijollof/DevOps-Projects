@@ -139,6 +139,8 @@ To create physical volumes run:
 
 We are going to use ***vgcreate*** utility to add all 3 PVs to a volume group (VG). Name the VG (vg-database). This literally means we are Creating a volume group and adding the physical volumes to it.
 
+`sudo vgcreate vg-database /dev/xvdb1 /dev/xvdc1 /dev/xvdd1`
+
 ![vgcreate](./images/webdata-vg.png)
 
 - To verify that the volume group has been created successfully run:
