@@ -74,7 +74,7 @@ We are going to use the ***gdisk*** utility to create a single partition on each
 
 ![partition](./images/partition-b.png)
 
-To create a single partition on the second and third  disk run the same commands but change the disk name see for [reference](https://github.com/Jobijollof/implementing-a-basic-web-solution-using--wordpress)
+To create a single partition on the second and third  disk run the same commands but change the disk name see for [reference](https://github.com/Jobijollof/DevOps-Projects/tree/main/Project%206%20%20Web%20Solution%20using%20Wordpress)
 
 After partitioning the three disks Once again, use the ***lsblk*** utility to view the newly configured partition on each of the 3 disks.
 
