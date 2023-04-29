@@ -40,27 +40,38 @@ Based on these you will be able to choose the most appropriate storage system fo
 1. Webserver
 2. Webserver
 3. webserver
-4. NFS server.
+4. NFS server
+5. database Server: Ubuntu 20.04 + MySQL
 
-- Attach 3 EBS volumes to each of the four instances.
+- Attach 3 EBS volumes to the first  four instances.
+
 ![EBS](./images/attach-ebs.png)
 
-- Spin up one more Ec2 instance, a database Server: Ubuntu 20.04 + MySQL
+
 
 ## Step 1 – Prepare NFS Server
 
 1. Spin up a new EC2 instance with RHEL Linux 8 Operating System.
+
 2. Configure LVM on the Server.
+
 c. Instead of formatting the disks as ext4, you will have to format them as xfs
+
 3. Ensure there are 3 Logical Volumes. ***lv-opt*** ***lv-apps***, and ***lv-logs***
+
 4. Create mount points on /mnt directory for the logical volumes as follow:
+
 5. Mount ***lv-apps*** on ***/mnt/apps*** – To be used by webservers
+
 6. Mount ***lv-logs*** on ***/mnt/logs*** – To be used by webserver logs
+
 7. Mount ***lv-opt*** on ***/mnt/opt*** – To be used by Jenkins server in Project 8
+
 8. Install NFS server, configure it to start on reboot and make sure it is up and running.
+
 ### Configure Logical Volume to the NFS server
 
-- List the block devices on the server run:
+- To list the block devices on the server run:
 
 `lsblk`
 
