@@ -156,9 +156,9 @@ Use ***lvcreate*** utility to create 3 logical volumes.
 - lv-logs 
 
 ```
-sudo lvcreate -n apps-lv -L 9G  database-vg
-sudo lvcreate -n logs-lv -L 9G database-vg
-sudo lvcreate -n opt-lv -L 9G database-vg
+sudo lvcreate -n apps-lv -L 9G vg-database
+sudo lvcreate -n logs-lv -L 9G vg-database
+sudo lvcreate -n opt-lv -L 9G vg-database
 
 ```
 
