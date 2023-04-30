@@ -340,6 +340,8 @@ Configure  MySQL DBMS to work with remote Web Server
 
 ![database](./images/tooling-mysql.png)
 
+`exit`
+
 To get the subnet cidr, go to the instance (in this case webserver1)
 
 - Click on networking. 
