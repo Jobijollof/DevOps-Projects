@@ -433,6 +433,12 @@ Repeat steps 1-4 for the other 2 Web Servers.
 
 - Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in ***/mnt/apps***. If you see the same files – it means NFS is mounted correctly. You can try to create a new file `touch test.txt` from one server and check if the same file is accessible from other Web Servers.
 
+- On Webserver
+
+![mount](https://user-images.githubusercontent.com/113374279/235352227-cf125f0d-4da7-4a3d-b611-1e27cec6aeee.png)
+
+- On NFS-server
+
 ![test](./images/text.txt.png)
 
 - Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat (step updating fstab) to make sure the mount point will persist after reboot.
