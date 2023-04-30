@@ -372,13 +372,20 @@ Edit configuration file by Changing  the bind address:
 
 ![mysql](./images/mysql.png)
 
+- Open port 3306
+
+![mysql](https://user-images.githubusercontent.com/113374279/235373168-f65e4b40-25ea-4a8b-88ef-5c55636b2cc4.png)
+
 
 ## Step 3 — Prepare the Web Servers
+
+
 We need to make sure that our Web Servers can serve the same content from shared storage solutions, in our case – NFS Server and MySQL database.
 At this point, our DB can be accessed for ***reads*** and ***writes*** by multiple clients. 
 For storing shared files that our Web Servers will use – we will utilize NFS and mount previously created Logical Volume ***lv-apps*** to the folder where Apache stores files to be served to the users ***(/var/www)***.
 This approach will make our Web Servers ***stateless***, which means we will be able to add new ones or remove them whenever we need, and the integrity of the data (in the database and on NFS) will be preserved.
 During the next steps we will do following:
+
 - Configure NFS client (this step must be done on all three servers)
 
 - Deploy a Tooling application to our Web Servers into a shared NFS folder
@@ -510,11 +517,6 @@ If you load the public Ip of the webserver you should get this result
 ![after](./images/after-confi.png) [Private IPV4 of the database]
 
 Apply tooling-db.sql script to your database 
-
-- Open port 3306 on db-server
-
-![mysql](https://user-images.githubusercontent.com/113374279/235372836-be80f377-ad01-403d-903e-e43d9162ba8e.png)
-
 
 Install mysql
 
