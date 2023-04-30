@@ -213,7 +213,13 @@ Creating Mount Points:
 
 ![mount](./images/mount.png)
 
-Install NFS server, configure it to start on reboot and make sure it is up and running:
+- Test the configuration and reload the daemon
+```
+sudo mount -a
+sudo systemctl daemon-reload
+```
+
+- Install NFS server, configure it to start on reboot and make sure it is up and running:
 
 `sudo yum update -y`
 
