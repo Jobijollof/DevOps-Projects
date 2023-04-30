@@ -483,6 +483,12 @@ Note 2: If you encounter 403 Error – check permissions to your /var/www/html f
 
 To make this change permanent – open following config file `sudo vi /etc/sysconfig/selinux` and set SELINUX=disabled then restart httpd.
 
+
+![old-config](https://user-images.githubusercontent.com/113374279/235355373-c8014421-098e-4578-ad65-f366b673c792.png)
+
+
+![new-config](https://user-images.githubusercontent.com/113374279/235355403-30c7b7f8-649e-461a-840e-af631e79ca43.png)
+
 ` sudo systemctl start httpd`
 
 `sudo systemctl status httpd`
