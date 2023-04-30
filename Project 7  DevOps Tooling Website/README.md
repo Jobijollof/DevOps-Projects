@@ -511,6 +511,11 @@ If you load the public Ip of the webserver you should get this result
 
 Apply tooling-db.sql script to your database 
 
+- Open port 3306 on db-server
+
+![mysql](https://user-images.githubusercontent.com/113374279/235372836-be80f377-ad01-403d-903e-e43d9162ba8e.png)
+
+
 Install mysql
 
 `sudo yum install mysql`
