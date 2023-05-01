@@ -7,7 +7,7 @@ Each URL contains a [domain name](https://en.wikipedia.org/wiki/Domain_name) par
 
 `nslookup 8.8.8.8`
 
-![nslookup](./images/nslook-up.png)
+![nslookup](./images/ns-lookup-0.png)
 
 When you have just one Web server and  there is a load increases – you want to serve more and more customers, you can add more CPU and RAM or completely replace the server with a more powerful one – this is called ***"vertical scaling".*** This approach has limitations – at some point, you reach the maximum capacity of CPU and RAM that can be installed into your server.
 Another approach used to cater for increased traffic is ***"horizontal scaling"*** – distributing the load across multiple Web servers. This approach is much more common and can be applied almost seamlessly and almost infinitely (you can imagine how many server Google has to serve billions of search requests).
@@ -21,7 +21,7 @@ Read about different [Load Balancing concepts](https://www.nginx.com/resources/g
 
 Let us take a look at the updated solution architecture with an LB added on top of Web Servers (for simplicity let us assume it is a software L7 Application LB, for example – [Apache,](https://httpd.apache.org/docs/2.4/mod/mod_proxy_balancer.html) [NGINX](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) or [HAProxy](http://www.haproxy.org/)
 
-![load-balancer](./images/load-balancer.png)
+![load-balancer](./images/architecture-1.png)
 
 In this project, we will enhance our Tooling Website solution by adding a Load Balancer to distribute traffic between Web Servers and allow users to access our website using a single URL.
 
@@ -36,19 +36,18 @@ Make sure that you have the following servers installed and configured within Pr
 - One MySQL DB Server (based on Ubuntu 20.04)
 - One RHEL8 NFS server
 
-![pre-re](./images/pre-archi.png)
+![pre-re](./images/architecture-3.png)
 
-# CONFIGURE APACHE AS A LOAD BALANCER
 
 ### Configure Apache As A Load Balancer
 
 - Create an Ubuntu Server 20.04 EC2 instance and name it ***Project-8-apache-lb,*** so your EC2 list will look like this:
 
-![running](./images/servers.png)
+![running](./images/apachelb-3.png)
 
 - Open TCP port 80 on Project-8-apache-lb by creating an Inbound Rule in the Security Group
 
-![port](./images/port-80.png)
+![port](./images/port-4.png)
 
 - Install Apache Load Balancer on ***Project-8-apache-lb server*** and configure it to point traffic coming to LB to both Web Servers:
 

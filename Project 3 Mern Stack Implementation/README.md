@@ -18,7 +18,7 @@ The four technologies are:
  - AWS account (free tier)
  - Basic understanding of setting up an Ec2 Instance.
 
-Lets get the show on the road 🏋️‍♀️😊
+Lets get this show on the road 🏋️‍♀️😊
 
 # Step 1.
 - Sign in to AWS free tier account
@@ -235,7 +235,7 @@ module.exports = router;
 
 Because the app is going to  use  Mongodb which is a ***NoSQL*** database, we need to create a model.
 A model is at the heart of JavaScript based applications, and it is what makes it interactive.
-We will also use models to define the database schema . This is important so that we will be able to define the fields stored in each Mongodb document. 
+We will also use models to define the database schema. This is important so that we will be able to define the fields stored in each Mongodb document. 
 The Schema is a blueprint of how the database will be constructed, including other data fields that may not be required to be stored in the database. These are known as virtual properties
 To create a Schema and a model, install mongoose which is a ***Node.js*** package that makes working with mongodb easier.
 
@@ -339,31 +339,31 @@ you will need to sign up for a shared clusters free account, which is ideal for 
 
 ![database](./images/build-database.png)
 
-- Click on `buid a database`
+- Click on `build a database`
 
 - Click on `Create` (our use case is a  free tier account)
 
 ![database](./images/create.png)
 
- select AWS as the cloud provider, and choose a region near you.
+select AWS as the cloud provider, and choose a region closest to you.
 
- ![database](./images/cloud-provider.png)
+![database](./images/cloud-provider.png)
 
- - Click on Create
+- Click on Create
 
- Editing  the following under ***Security quick start** will grant you access to your database
+Editing  the following under ***Security quick start** will grant you access to your database
 
- - Input User name field and password
+- Input User name field and password
 
- - Click `Create user`
+- Click `Create user`
 
- ![database](./images/username.png)
+![database](./images/username.png)
 
- -  Add entries to your IP access list
+-  Add entries to your IP access list
 
- - Click on finish and close 
+- Click on finish and close 
 
- ![database](./images/congratulations.png) 
+![database](./images/congratulations.png) 
 
 - Click Go to databases
 
@@ -373,19 +373,19 @@ you will need to sign up for a shared clusters free account, which is ideal for 
 
 - Click on collections
 
- ![database](./images/add-database.png) 
+![database](./images/add-database.png) 
 
- We have to connect the database to our webapp.
+We have to connect the database to our webapp.
  
- Under database deployment:
+Under database deployment:
 
- - Click connect
+- Click connect
 
- ![database](./images/connect.png)
+![database](./images/connect.png)
 
- - Click connect your application
+- Click connect your application
 
- ![database](./images/connection%20string.png)
+![database](./images/connection%20string.png)
 
 In the ***index.js*** file, we specified ***process.env*** to access environment variables, but we have not yet created this file. So we need to do that now.
 
@@ -492,7 +492,7 @@ value: Aplication/json
 Since we are done with the functionality we want from our backend and API, it is time to create a user interface for a Web client (browser) to interact with the application via API. To start out with the frontend of the To-do app, we will use the create-react-app command to scaffold our app.
 In the same root directory as your backend code, which is the Todo directory, run:
 
-` npx create-react-app client`
+` npm create-react-app client`
 
 This code will create a new folder in your Todo directory called client, where you will add all the react code.
 
@@ -538,7 +538,7 @@ In Todo directory, open the ***package.json*** file. Change the highlighted part
 - Add the key value pair in the package.json file
 
 ```
-"proxy": `http://localhost:5000`
+"proxy": http://localhost:5000
 
 ```
 
@@ -558,7 +558,7 @@ Important note: In order to to access the application from the Internet you have
 
 ![react](./images/react.png)
 
-# Creating your React Components
+# Creating React Components
 
 One of the advantages of react is that it makes use of components, which are reusable and also makes code modular. For our Todo app, there will be two stateful components and one stateless component.
 
