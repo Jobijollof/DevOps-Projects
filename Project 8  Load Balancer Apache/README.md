@@ -116,11 +116,10 @@ You can also study and try other methods, like [bybusyness,](https://httpd.apach
 
 `http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php`
 
-![login](./images/login.png)
-
 ![website](./images/website.png)
 
-In [Project-7](https://github.com/Jobijollof/Devops-Tooling-Website-Solution) we mounted /var/log/httpd/ from our Web Servers to the NFS server – We will have to unmount them and make sure that each Web Server has its own log directory.
+
+In Project-7 we mounted /var/log/httpd/ from our Web Servers to the NFS server.  We will have to unmount them and make sure that each Web Server has its own log directory.
 
 - Connect to Web Servers and run the following command:
 
