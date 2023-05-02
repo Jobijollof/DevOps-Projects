@@ -152,17 +152,19 @@ Open this file on your LB server
 
 We will update the LB config file with those names instead of IP addresses.
 
+`sudo vi /etc/apache2/sites-available/000-default.conf`
+
 ```
 BalancerMember http://Web1:80 loadfactor=5 timeout=1
 BalancerMember http://Web2:80 loadfactor=5 timeout=1
 
 ```
 
-![proxy](./images/proxy.png)
+![proxy](./images/config.png)
 
 We will curl our Web Servers from LB locally curl http://Web1 or curl http://Web2.
 
-![curl](./images/curl-command.png)
+![curl](./images/curl.png)
 
 Please note that, this is only an internal configuration and it is also local to our LB server, these names will neither be ‘resolvable’ from other servers internally nor from the Internet.
 ### Target Architecture
@@ -170,7 +172,7 @@ Please note that, this is only an internal configuration and it is also local to
 Now our set-up looks like this:
 
 
-![lb](./images/final%20look.png)
+![lb](./images/architecture-4.png)
 
 
 
