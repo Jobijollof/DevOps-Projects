@@ -151,8 +151,12 @@ Open this file on your LB server
 ![web](./images/web1-2.png)
 
 We will update the LB config file with those names instead of IP addresses.
+
+```
 BalancerMember http://Web1:80 loadfactor=5 timeout=1
 BalancerMember http://Web2:80 loadfactor=5 timeout=1
+
+```
 
 ![proxy](./images/proxy.png)
 
