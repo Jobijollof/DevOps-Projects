@@ -126,7 +126,7 @@ To secure server run the next commands
 
 5. To list available sites run the following commands
 
-'sudo ls /etc/apache2/sites-available'
+`sudo ls /etc/apache2/sites-available`
 
 6. There will be a prompt  to reload APACHE
 
