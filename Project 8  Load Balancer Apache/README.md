@@ -86,7 +86,24 @@ Go into apaches default configuration file
 
 `sudo vi /etc/apache2/sites-available/000-default.conf`
 
-![cofig](./images/config.png)
+Add this configuration into this section <VirtualHost *:80>
+
+```
+
+<Proxy "balancer://mycluster">
+               BalancerMember http://<WebServer1-Private-IP-Address>:80 loadfactor=5 timeout=1
+               BalancerMember http://<WebServer2-Private-IP-Address>:80 loadfactor=5 timeout=1
+               ProxySet lbmethod=bytraffic
+               # ProxySet lbmethod=byrequests
+        </Proxy>
+
+
+        ProxyPreserveHost On
+        ProxyPass / balancer://mycluster/
+        ProxyPassReverse / balancer://mycluster/
+
+```
+![config](./images/apache-5.png)
 
 ### Restart apache server
 `sudo systemctl restart apache2`
