@@ -1,23 +1,29 @@
-# -Introduction-To-Jenkins
+# Introduction To Jenkins
 
 Tooling  Website Deployment and Automation With Continuous Integration
 
-In [Project-8](https://github.com/Jobijollof/Devops-Tooling-Website-Solution) we introduced the ***horizontal scaling concept***, which allows us to add new Web Servers to our Tooling Website. We have successfully deployed a set-up with 2 Web Servers and a Load Balancer to distribute traffic between them.  Assuming this setup is made up of just two or three servers then managing and configuring them manually will not be a big deal. Imagine repeating the same task in order to add dozens or even hundreds of servers.
+In Project-8 we introduced the ***horizontal scaling concept***, which allows us to add new Web Servers to our Tooling Website. 
+We have successfully deployed a set-up with 2 Web Servers and a Load Balancer to distribute traffic between them.  
+Assuming this setup is made up of just two or three servers then managing and configuring them manually will not be a big deal.
+Imagine repeating the same task in order to add dozens or even hundreds of servers.
 
-DevOps is about Agility and the speedy release of software and web solutions. One of the ways to guarantee fast and repeatable deployments is the Automation of routine tasks.
-In this project, we are going to start automating part of our routine tasks with a free and open-source automation server – [Jenkins.](https://en.wikipedia.org/wiki/Jenkins_(software)) It is one of the most popular [CI/CD](https://en.wikipedia.org/wiki/CI/CD)tools, it was created by a former Sun Microsystems developer Kohsuke Kawaguchi and the project originally had a named "Hudson".
+DevOps is about Agility and the speedy release of software and web solutions. One of the ways to guarantee fast and repeatable deployments is the Automation of routine tasks
+
+In this project, we are going to start automating part of our routine tasks with a free and open-source automation server [Jenkins.](https://en.wikipedia.org/wiki/Jenkins_(software)) It is one of the most popular [CI/CD](https://en.wikipedia.org/wiki/CI/CD)tools, it was created by a former Sun Microsystems developer Kohsuke Kawaguchi and the project originally had a named "Hudson".
+
 According to Circle CI, Continuous integration (CI) is a software development strategy that increases the speed of development while ensuring the quality of the code that teams deploy. Developers continually commit code in small increments (at least daily, or even several times a day), which is then automatically built and tested before it is merged with the shared repository.
+
 In our project we are going to utilize Jenkins CI capabilities to make sure that every change made to the source code in GitHub https://github.com will  automatically be updated to the Tooling Website.
 
 ***Side Self Study***
 Read about [Continuous Integration, Continuous Delivery and Continuous Deployment.](https://circleci.com/continuous-integration/)
 
 ### Task
-
 Enhance the architecture prepared in Project 8 by adding a Jenkins server, and configuring a job to automatically deploy source code changes from Git to the NFS server.
 Here is what your updated architecture will look like upon completion of this project:
 
 ![Architecture](./images/Architecture.png)
+
 
 ## INSTALL AND CONFIGURE JENKINS SERVER
 
@@ -39,6 +45,17 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
 
 ```    
 `sudo apt update`
+
+I had errors at this point.
+
+![issues with jenkins install 1](https://user-images.githubusercontent.com/113374279/234577127-4627dad8-a206-44fa-99a2-b218837fa83c.png)
+i did a bit of research, and got that this error typically occurs when trying to update or install packages from a repository that has not been authenticated. The error message suggests that the public key needed to authenticate the repository is not available on your system.
+
+To resolve this issue, i ran the following command:
+
+`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA`
+
+![install-jenkins](https://user-images.githubusercontent.com/113374279/234578465-8b0fedb5-64cc-4d90-bced-8778c882ecca.png)
 
 `sudo apt upgrade -y`
 

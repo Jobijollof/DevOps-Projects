@@ -1,4 +1,5 @@
-# Devops-Tooling-Website-Solution
+# Devops Tooling Website Solution
+
 As a member of a DevOps team, implementing a tooling website will be almost inevitable. A tooling website grants easy access to DevOps tools within the corporate infrastructure.
 ### Project Overview:
 We want to introduce a set of DevOps tools that will help our team in day-to-day activities in managing, developing, testing, deploying and monitoring different projects.
@@ -40,27 +41,40 @@ Based on these you will be able to choose the most appropriate storage system fo
 1. Webserver
 2. Webserver
 3. webserver
-4. NFS server.
+4. NFS server
+5. database Server: Ubuntu 20.04 + MySQL
 
-- Attach 3 EBS volumes to each of the four instances.
+- Attach 3 EBS volumes to the first  four instances.
+
 ![EBS](./images/attach-ebs.png)
 
-- Spin up one more Ec2 instance, a database Server: Ubuntu 20.04 + MySQL
 
 ## Step 1 – Prepare NFS Server
 
+
 1. Spin up a new EC2 instance with RHEL Linux 8 Operating System.
+
 2. Configure LVM on the Server.
-c. Instead of formatting the disks as ext4, you will have to format them as xfs
-3. Ensure there are 3 Logical Volumes. ***lv-opt*** ***lv-apps***, and ***lv-logs***
-4. Create mount points on /mnt directory for the logical volumes as follow:
-5. Mount ***lv-apps*** on ***/mnt/apps*** – To be used by webservers
-6. Mount ***lv-logs*** on ***/mnt/logs*** – To be used by webserver logs
-7. Mount ***lv-opt*** on ***/mnt/opt*** – To be used by Jenkins server in Project 8
-8. Install NFS server, configure it to start on reboot and make sure it is up and running.
+
+3. Instead of formatting the disks as ext4, you will have to format them as xfs
+
+4. Ensure there are 3 Logical Volumes. ***lv-opt*** ***lv-apps***, and ***lv-logs***
+
+5. Create mount points on /mnt directory for the logical volumes as follow:
+
+6. Mount ***lv-apps*** on ***/mnt/apps*** – To be used by webservers
+
+7. Mount ***lv-logs*** on ***/mnt/logs*** – To be used by webserver logs
+
+8. Mount ***lv-opt*** on ***/mnt/opt*** – To be used by Jenkins server in Project 8
+
+9. Install NFS server, configure it to start on reboot and make sure it is up and running.
+
+
 ### Configure Logical Volume to the NFS server
 
-- List the block devices on the server run:
+
+- To list the block devices on the server run:
 
 `lsblk`
 
@@ -74,7 +88,7 @@ We are going to use the ***gdisk*** utility to create a single partition on each
 
 ![partition](./images/partition-b.png)
 
-To create a single partition on the second and third  disk run the same commands but change the disk name see for [reference](https://github.com/Jobijollof/implementing-a-basic-web-solution-using--wordpress)
+To create a single partition on the second and third  disk run the same commands but change the disk name see for [reference](https://github.com/Jobijollof/DevOps-Projects/tree/main/Project%206%20%20Web%20Solution%20using%20Wordpress)
 
 After partitioning the three disks Once again, use the ***lsblk*** utility to view the newly configured partition on each of the 3 disks.
 
@@ -85,6 +99,7 @@ After partitioning the three disks Once again, use the ***lsblk*** utility to vi
 Take note of ***Disk*** and ***Part***.  Disks now been partitions.
 
 It is on these partitions we are going to create physical volumes.
+
 In Ubuntu we use ***apt*** command to install packages, in RedHat/CentOS a different package manager is used, called the ***yum*** command.
 
 We are going to install ***lvm2*** package on the server so that it can be used to create a volume group etc
@@ -105,7 +120,9 @@ Logical volume management (LVM) is a form of storage virtualization that offers 
 
 `sudo lvmdiskscan`
 
-![lvd](./images/lvm-scan.png) This shows us that there are four partitions.
+This shows us that there are four partitions.
+
+![lvd](./images/lvm-scan.png) 
 
 The next stage is to create the physical volume using the ***pvcreate*** utility.
 
@@ -123,6 +140,8 @@ To create physical volumes run:
 
 We are going to use ***vgcreate*** utility to add all 3 PVs to a volume group (VG). Name the VG (vg-database). This literally means we are Creating a volume group and adding the physical volumes to it.
 
+`sudo vgcreate vg-database /dev/xvdb1 /dev/xvdc1 /dev/xvdd1`
+
 ![vgcreate](./images/webdata-vg.png)
 
 - To verify that the volume group has been created successfully run:
@@ -136,6 +155,13 @@ Use ***lvcreate*** utility to create 3 logical volumes.
 - lv-opt 
 - lv-apps, and
 - lv-logs 
+
+```
+sudo lvcreate -n apps-lv -L 9G vg-database
+sudo lvcreate -n logs-lv -L 9G vg-database
+sudo lvcreate -n opt-lv -L 9G vg-database
+
+```
 
 ![lv](./images/logical-volume.png)
 
@@ -188,7 +214,13 @@ Creating Mount Points:
 
 ![mount](./images/mount.png)
 
-Install NFS server, configure it to start on reboot and make sure it is up and running:
+- Test the configuration and reload the daemon
+```
+sudo mount -a
+sudo systemctl daemon-reload
+```
+
+- Install NFS server, configure it to start on reboot and make sure it is up and running:
 
 `sudo yum update -y`
 
@@ -309,6 +341,8 @@ Configure  MySQL DBMS to work with remote Web Server
 
 ![database](./images/tooling-mysql.png)
 
+`exit`
+
 To get the subnet cidr, go to the instance (in this case webserver1)
 
 - Click on networking. 
@@ -339,13 +373,20 @@ Edit configuration file by Changing  the bind address:
 
 ![mysql](./images/mysql.png)
 
+- Open port 3306
+
+![mysql](https://user-images.githubusercontent.com/113374279/235373168-f65e4b40-25ea-4a8b-88ef-5c55636b2cc4.png)
+
 
 ## Step 3 — Prepare the Web Servers
+
+
 We need to make sure that our Web Servers can serve the same content from shared storage solutions, in our case – NFS Server and MySQL database.
 At this point, our DB can be accessed for ***reads*** and ***writes*** by multiple clients. 
 For storing shared files that our Web Servers will use – we will utilize NFS and mount previously created Logical Volume ***lv-apps*** to the folder where Apache stores files to be served to the users ***(/var/www)***.
 This approach will make our Web Servers ***stateless***, which means we will be able to add new ones or remove them whenever we need, and the integrity of the data (in the database and on NFS) will be preserved.
 During the next steps we will do following:
+
 - Configure NFS client (this step must be done on all three servers)
 
 - Deploy a Tooling application to our Web Servers into a shared NFS folder
@@ -400,6 +441,12 @@ Repeat steps 1-4 for the other 2 Web Servers.
 
 - Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in ***/mnt/apps***. If you see the same files – it means NFS is mounted correctly. You can try to create a new file `touch test.txt` from one server and check if the same file is accessible from other Web Servers.
 
+- On Webserver
+
+![mount](https://user-images.githubusercontent.com/113374279/235352227-cf125f0d-4da7-4a3d-b611-1e27cec6aeee.png)
+
+- On NFS-server
+
 ![test](./images/text.txt.png)
 
 - Locate the log folder for Apache on the Web Server and mount it to NFS server’s export for logs. Repeat (step updating fstab) to make sure the mount point will persist after reboot.
@@ -443,6 +490,12 @@ Note 2: If you encounter 403 Error – check permissions to your /var/www/html f
 `sudo setenforce 0`
 
 To make this change permanent – open following config file `sudo vi /etc/sysconfig/selinux` and set SELINUX=disabled then restart httpd.
+
+
+![old-config](https://user-images.githubusercontent.com/113374279/235355373-c8014421-098e-4578-ad65-f366b673c792.png)
+
+
+![new-config](https://user-images.githubusercontent.com/113374279/235355403-30c7b7f8-649e-461a-840e-af631e79ca43.png)
 
 ` sudo systemctl start httpd`
 

@@ -1,4 +1,4 @@
-# Load-Balancer-Solution-With-APACHE
+# Load Balancer Solution With-APACHE
 
 This project is a continuation of project 7( Devops-Tooling-Website-Solution) 
 After completing Project-7 it is possible to wonder how a user will have access to each of the webservers using 3 different IP addresses or 3 different DNS names. You might also wonder what is the point of having 3 different servers doing exactly the same thing.
