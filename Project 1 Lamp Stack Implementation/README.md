@@ -151,7 +151,7 @@ sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/met
 The server’s public hostname (DNS name) and public IP address will be in the output. Website can be  accessed in the  browser by public DNS name, not only by IP – try it out, the result must be the same (port is optional)
 
 
-'http://Public-IP-Adress:80'
+`http://Public-IP-Adress:80`
 
 ![Apache2 virtual host successful](./images/virtual-hostapache2.png)
 
