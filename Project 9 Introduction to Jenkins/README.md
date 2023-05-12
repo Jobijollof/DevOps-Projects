@@ -59,6 +59,8 @@ To resolve this issue, i ran the following command:
 
 `sudo apt upgrade -y`
 
+`sudo apt update`
+
 `sudo apt-get install jenkins -y`
 
 Make sure Jenkins is up and running:
