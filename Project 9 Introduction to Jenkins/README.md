@@ -2,22 +2,23 @@
 
 Tooling  Website Deployment and Automation With Continuous Integration
 
-In Project-8 we introduced the ***horizontal scaling concept***, which allows us to add new Web Servers to our Tooling Website. 
+In [Project-8](https://github.com/Jobijollof/DevOps-Projects/tree/main/Project%208%20%20Load%20Balancer%20Apache) we introduced the ***horizontal scaling concept***, which allows us to add new Web Servers to our Tooling Website. 
+
 We have successfully deployed a set-up with 2 Web Servers and a Load Balancer to distribute traffic between them.  
 Assuming this setup is made up of just two or three servers then managing and configuring them manually will not be a big deal.
 Imagine repeating the same task in order to add dozens or even hundreds of servers.
 
-DevOps is about Agility and the speedy release of software and web solutions. One of the ways to guarantee fast and repeatable deployments is the Automation of routine tasks
+DevOps is about Agility and the speedy release of software and web solutions. One of the ways to guarantee fast and repeatable deployments is the Automation of routine tasks.
 
 In this project, we are going to start automating part of our routine tasks with a free and open-source automation server [Jenkins.](https://en.wikipedia.org/wiki/Jenkins_(software)) It is one of the most popular [CI/CD](https://en.wikipedia.org/wiki/CI/CD)tools, it was created by a former Sun Microsystems developer Kohsuke Kawaguchi and the project originally had a named "Hudson".
 
 According to Circle CI, Continuous integration (CI) is a software development strategy that increases the speed of development while ensuring the quality of the code that teams deploy. Developers continually commit code in small increments (at least daily, or even several times a day), which is then automatically built and tested before it is merged with the shared repository.
 
-In our project we are going to utilize Jenkins CI capabilities to make sure that every change made to the source code in GitHub https://github.com will  automatically be updated to the Tooling Website.
+In our project we are going to utilize Jenkins CI capabilities to make sure that every change made to the source code in GitHub https://github.com will automatically be updated to the Tooling Website.
 - I forgot my [jenkins password](https://tecadmin.net/reset-jenkins-admin-password/) 
 
 ***Side Self Study***
-Read about [Continuous Integration, Continuous Delivery and Continuous Deployment.](https://circleci.com/continuous-integration/)
+Read about [Continuous Integration, Continuous Delivery, and Continuous Deployment.](https://circleci.com/continuous-integration/)
 
 ### Task
 Enhance the architecture prepared in Project 8 by adding a Jenkins server, and configuring a job to automatically deploy source code changes from Git to the NFS server.
